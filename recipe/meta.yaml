@@ -1,3 +1,4 @@
+{% set python_min = '3.10' %}
 {% set name = "jsa_data_manager" %}
 {% set version = "0.0.1" %}
 
@@ -12,16 +13,16 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=64.0.0
     - wheel
     - pip
   run:
-    - python >=3.10
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -35,6 +36,7 @@ test:
     - netcdf4
     - xarray
     - pydantic
+    - python {{ python_min }}
 
 about:
   home: https://github.com/FZJ-IEK3-VSA/jsa_data_manager/tree/main
